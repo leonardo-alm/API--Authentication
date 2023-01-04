@@ -6,11 +6,13 @@ const passport = require("passport");
 
 // App config
 app.set("trust proxy", 1);
-const PORT = process.env.PORT || 4001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
+
+const PORT = process.env.PORT || 4001;
+
 // Import Passport config
 require("./config/passport");
 
@@ -25,6 +27,7 @@ app.use(
     secure: true
   })
 );
+
 // Passport Config
 app.use(passport.initialize());
 app.use(passport.session());

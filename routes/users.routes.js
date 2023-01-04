@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const helper = require("../helpers/helper");
 const passport = require("passport");
 const filename = "./data/users.json";
+const helper = require("../helpers/helper");
 const bcrypt = require("bcrypt");
 let users = require("../data/users.json");
 
@@ -16,6 +16,7 @@ router.post("/register", async (req, res) => {
             console.log("User already exists!");
             return res.redirect("login");
         }
+
         // Hash password before storing in local DB:
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
